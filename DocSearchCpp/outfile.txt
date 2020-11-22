@@ -1,0 +1,59 @@
+A : 1 
+About : 1 
+Domestic : 1 
+Felidae : 1 
+It : 1 
+The : 1 
+a : 1 1 1 1 
+ability : 1 
+and : 1 1 1 
+are : 1 1 
+as : 1 
+avoids : 1 
+be : 1 
+breeds : 1 
+by : 1 1 
+can : 1 
+carnivorous : 1 
+cat : 1 1 1 1 1 1 1 1 
+cats : 1 
+companionship : 1 
+contact : 1 
+distinguish : 1 
+domestic : 1 1 
+domesticated : 1 
+either : 1 
+family : 1 1 
+farm : 1 
+feral : 1 
+for : 1 
+freely : 1 
+from : 1 
+house : 1 
+human : 1 
+humans : 1 
+hunt : 1 
+in : 1 
+is : 1 1 1 
+it : 1 
+latter : 1 
+mammal : 1 
+members : 1 
+of : 1 1 
+often : 1 
+only : 1 
+or : 1 
+ranges : 1 
+recognized : 1 
+referred : 1 
+registries. : 1 
+rodents : 1 
+sixty : 1 
+small : 1 
+species : 1 1 
+the : 1 1 1 1 1 1 
+their : 1 
+to : 1 1 1 
+valued : 1 
+various : 1 
+wild : 1 
