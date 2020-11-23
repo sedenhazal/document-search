@@ -10,48 +10,90 @@
 #include <sstream>
 #include <vector>
 #include <map>
+#include <algorithm>
+#include <bits/stdc++.h>
 #include <experimental/filesystem>
 
 using namespace std;
+namespace fs = std::experimental::filesystem;
 
 
 class DocumentSearch
 {
-  map<string,vector<int> > InvertedIndex; // map < word, FileID>
+  map<string,vector<int> > InvertedIndex; // map < word,fileID>
+  vector<string> filelist;
+  vector<int> frequency; // number of occurrences.
 
   public:
-    void index(string filename);
+    void analyzer(string directory);
+    void index();
     void search(string word);
     void print();
 };
 
-void DocumentSearch::index(string filename)
+void DocumentSearch::analyzer(string directory)
+{
+    for(auto& p: fs::recursive_directory_iterator(directory))
+    {
+    	filelist.push_back(p.path());
+    }
+
+	//fs::remove_all(directory);
+
+}
+
+void DocumentSearch::index()
 {
 
-  vector<string> filelist;
-  ifstream f;
-  f.open(filename,ios::in);
-
-  if(!f)
+  for (int i = 0; i < (int)filelist.size(); i++)
   {
-    cout<<"File Not Found\n";
-    return ;
+	  ifstream f;
+	  f.open(filelist[i],ios::in);
+
+	  if(!f)
+	  {
+		cout<<"File Not Found\n";
+		return ;
+	  }
+
+	  string line,word;
+	  int line_number=0;
+	  while(getline(f,line))
+	  {
+		line_number++;
+		stringstream s(line);
+		while(s>>word)
+		{
+			InvertedIndex[word].push_back(i);
+		}
+	  }
+	  f.close();
   }
 
-  filelist.push_back(filename);
-
-  string line,word;
-  int line_number=0;
-  while(getline(f,line))
+  // delete duplicated fileIDs.
+  map<int, int> duplicates;
+  for(auto it = InvertedIndex.begin(); it != InvertedIndex.end(); ++it)
   {
-    line_number++;
-    stringstream s(line);
-    while(s>>word)
-    {
-      InvertedIndex[word].push_back((int)filelist.size());
-    }
+	  vector<int>& v = it->second; // fileID
+
+	  // Determine the number of occurrences.
+	  for (auto & elem: v)
+	  {
+		  auto result = duplicates.insert(pair<int,int>(elem,1));
+		  if (result.second == false)
+			  result.first->second++;
+	  }
+
+
+	  for (auto & elem: duplicates)
+	  {
+		  frequency.push_back(elem.second);
+	  }
+
+	  unordered_set<int> s(v.begin(), v.end());
+	  v.assign(s.begin(), s.end());
+
   }
-  f.close();
 
 }
 
@@ -61,15 +103,19 @@ void DocumentSearch::print()
   ofstream outfile;
   outfile.open(filename,ios::out);
 
+
   for(auto it = InvertedIndex.begin(); it != InvertedIndex.end(); ++it)
   {
 	  outfile << it->first << " : ";
 
+	  int ind = 0;
       for(auto it2 = it->second.begin(); it2 != it->second.end(); ++it2)
       {
-    	  outfile << *it2 << " ";
+    	  outfile << *it2 << "-"<< frequency[ind] <<" ";
+    	  ind++;
       }
       outfile << endl;
+
   }
 
   outfile.close();
@@ -100,7 +146,8 @@ int main(int argc, char*argv[])
 
 		if (command == "-index")
 		{
-			Data.index(argv[2]);
+			Data.analyzer(argv[2]);
+			Data.index();
 			Data.print();
 		}
 		else if (command == "-search")
