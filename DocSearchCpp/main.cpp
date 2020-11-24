@@ -4,24 +4,27 @@
  *  Created on: Nov 21, 2020
  *      Author: hazalg
  */
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
 #include <map>
-#include <algorithm>
 #include <bits/stdc++.h>
 #include <experimental/filesystem>
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
 
+struct file
+{
+	int fileId;
+	int frequency;
+};
 
 class DocumentSearch
 {
-  map<string,vector<int> > InvertedIndex; // map <word,fileID>
-  vector< vector<int> > frequency; // vector<word,frequency>
+  map<string,vector<int> > InvertedIndexTemp; // map <word,fileID>
+  map<string,vector<file> > InvertedIndex; // map <word,file>
   vector<string> filelist;
 
   public:
@@ -29,23 +32,21 @@ class DocumentSearch
     void merge();
     void index();
     void search(string word);
-    void print();
 };
 
 void DocumentSearch::analyzer(string directory)
 {
-    for(auto& p: fs::recursive_directory_iterator(directory))
-    {
-    	filelist.push_back(p.path());
+	for(auto& p: fs::recursive_directory_iterator(directory))
+	{
+		filelist.push_back(p.path());
     }
-
-	//fs::remove_all(directory);
-
 }
 
 void DocumentSearch::index()
 {
+	vector<int> v1,v2;
 
+	// 1. Construct Inverted Index
 	for (int i = 0; i < (int)filelist.size(); i++)
 	{
 		ifstream f;
@@ -58,134 +59,94 @@ void DocumentSearch::index()
 		}
 
 		string line,word;
-		int line_number=0;
 		while(getline(f,line))
 		{
-			line_number++;
 			stringstream s(line);
 			while(s>>word)
 			{
-				InvertedIndex[word].push_back(i);
+				InvertedIndexTemp[word].push_back(i);
 			}
 		}
 		f.close();
 	}
-
 }
 
 void DocumentSearch::merge()
 {
-	  int freq = 1;
-	  int ind = 0;
+	int freq = 1;
+	int ind = 0;
 
-	  cout << InvertedIndex.size()<< endl;
-	  //frequency.resize(InvertedIndex.size());
+	string filename = "outfile.txt";
+	ofstream outfile;
+	outfile.open(filename,ios::out);
 
-	  for(auto it = InvertedIndex.begin(); it != InvertedIndex.end(); ++it)
-	  {
+	// 2. Merge Inverted Index
+	for(auto it = InvertedIndexTemp.begin(); it != InvertedIndexTemp.end(); ++it)
+	{
+		string word = it->first;
 		vector<int>& v = it->second;
-		vector<int> vfreq;
+		file obj;
 
-		  // Calculate number of occurrences.
-	      if ((int)v.size() > 1)
-	      {
-		      for (int j = 1; j < (int)v.size(); j++)
-		      {
-		    	  if (v[j] == v[j - 1])
-		    	  {
-		    		  freq++;
-		    	  }
-		    	  else
-		    	  {
-		    		  vfreq.push_back(freq);
-		    		  freq = 1; // reset frequency
+		// Calculate number of occurrences.
+		if ((int)v.size() > 1)
+		{
+			for (int j = 1; j < (int)v.size(); j++)
+			{
 
-		    		  if(j == (int)v.size() - 1)
-		    		  {
-		    			  vfreq.push_back(freq);
-		    		  }
-		    	  }
-		      }
+				if (v[j] == v[j - 1])
+				{
+					freq++;
+				}
+				else
+				{
+					obj.fileId = v[j - 1];
+					obj.frequency = freq;
+					InvertedIndex[word].push_back(obj);
+					freq = 1; // reset frequency
 
-		      if (freq > 1)
-		      {
-		    	  vfreq.push_back(freq);
-		    	  freq = 1; // reset frequency
-		      }
-	      }
-	      else
-	      {
-	    	  vfreq.push_back(freq);
-	      }
+					// For the last vector element which is different from previous one.
+					if(j == (int)v.size() - 1)
+					{
+						obj.fileId = v[j];
+						obj.frequency = freq;
+						InvertedIndex[word].push_back(obj);
+					}
+				}
+			}
 
-    	  //frequency[ind].resize(vfreq.size());
-    	  frequency.push_back(vfreq);
+			// For cases like: {1,1,1} or {1,1,1,2,2,2} etc.
+			if (freq > 1)
+			{
+				obj.fileId = v.front();
+				obj.frequency = freq;
+				InvertedIndex[word].push_back(obj);
+				freq = 1; // reset frequency
+			}
+		}
+		else
+		{
+			obj.fileId = v.back();
+			obj.frequency = freq;
+			InvertedIndex[word].push_back(obj);
+		}
 
-		  cout << ind + 1 << " : ";
-		  for (int k = 0; k < (int)frequency[ind].size(); k++)
-		  {
-			 cout << frequency[ind][k] << " ";
-		  }
-		  cout << endl;
+		// 3. Serialize Inverted Index
+		outfile <<  word << " : ";
+		cout << ind + 1 << word << " : ";
 
-	      // Delete duplicates.
-		  unordered_set<int> s(v.begin(), v.end());
-		  v.assign(s.begin(), s.end());
-		  reverse(v.begin(), v.end());
+		int size = (int)InvertedIndex[word].size();
+		for (int it2 = 0; it2 < size; it2++)
+		{
+			outfile << InvertedIndex[word][it2].fileId << "-" << InvertedIndex[word][it2].frequency << " ";
+			cout << InvertedIndex[word][it2].fileId << "-" << InvertedIndex[word][it2].frequency << " ";
+		}
 
-    	  ind++;
-	  }
+		outfile << endl;
+		cout << endl;
+		ind++;
+	}
 
-	  // Print
-	  string filename = "outfile.txt";
-	  ofstream outfile;
-	  outfile.open(filename,ios::out);
-
-	  int ind1, ind2 = 0;
-	  for(auto it = InvertedIndex.begin(); it != InvertedIndex.end(); ++it)
-	  {
-
-		  outfile << it->first << " : ";
-
-		  ind2 = 0;
-	      for(auto it2 = it->second.begin(); it2 != it->second.end(); ++it2)
-	      {
-	    	  outfile << *it2 << "-" << frequency[ind1][ind2] <<" ";
-	    	  ind2++;
-
-	      }
-	      outfile << endl;
-		  ind1++;
-	  }
-
-	  outfile.close();
-
-}
-
-void DocumentSearch::print()
-{
-  string filename = "outfile.txt";
-  ofstream outfile;
-  outfile.open(filename,ios::out);
-
-  int ind, ind2 = 0;
-  for(auto it = InvertedIndex.begin(); it != InvertedIndex.end(); ++it)
-  {
-	  ind++;
-	  outfile << it->first << " : ";
-
-	  ind2 = 0;
-      for(auto it2 = it->second.begin(); it2 != it->second.end(); ++it2)
-      {
-    	  ind2++;
-    	  outfile << *it2 <<" ";
-
-      }
-      outfile << endl;
-  }
-
-  outfile.close();
-
+	outfile.close();
 }
 
 void DocumentSearch::search(string word)
@@ -200,7 +161,6 @@ void DocumentSearch::search(string word)
 	for(int counter = 0;counter < size ;counter++)
 	{
 	cout<<counter+1<<":\n";
-	cout<<" FileID: "<<InvertedIndex[word][counter]<<endl;
 	}
 }
 
@@ -215,7 +175,6 @@ int main(int argc, char*argv[])
 		Data.analyzer(argv[2]);
 		Data.index();
 		Data.merge();
-		//Data.print();
 	}
 	else if (command == "-search")
 	{

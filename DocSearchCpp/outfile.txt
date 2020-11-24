@@ -8,7 +8,7 @@ Dogs : 3-1
 Domestic : 6-1 
 Failure : 6-1 
 Female : 6-1 
-It : 2-1 5-2 
+It : 2-1 2-2 
 Its : 5-1 
 Local : 9-1 
 Other : 9-1 
@@ -36,8 +36,8 @@ anatomy : 5-1
 ancestor : 2-1 
 and : 2-4 3-5 5-6 6-4 9-4 11-1 
 appointed : 9-1 
-are : 2-2 5-1 6-1 9-3 
-as : 2-1 3-1 5-3 6-4 9-1 11-3 
+are : 2-2 5-1 6-1 2-3 
+as : 2-1 3-1 5-3 6-4 9-1 2-3 
 aspect : 9-1 
 assisting : 3-1 
 association : 3-1 
@@ -45,7 +45,7 @@ at : 5-1 6-1
 attributes : 2-1 
 attuned : 3-1 
 autumn : 6-1 
-be : 2-1 3-2 
+be : 2-1 2-2 
 been : 2-1 
 behavior : 3-1 
 behaviors : 2-1 
@@ -56,7 +56,7 @@ body : 5-2
 bred : 2-1 6-1 
 breeding : 6-1 
 but : 5-1 11-1 
-by : 5-1 6-1 9-3 
+by : 5-1 6-1 5-3 
 can : 3-1 5-1 6-1 
 canids : 2-1 3-1 
 capabilities : 2-1 
@@ -110,7 +110,7 @@ fifth : 11-1
 first : 2-2 
 five : 6-1 
 flexible : 5-1 
-for : 2-1 9-2 3-1 5-1 
+for : 2-1 3-2 5-1 9-1 
 frequency : 5-1 
 friend : 3-1 
 from : 6-2 
@@ -122,7 +122,7 @@ gray : 2-1
 great : 11-1 
 growling : 5-1 
 grunting : 5-1 
-has : 2-1 9-2 3-1 5-1 
+has : 2-1 3-2 5-1 9-1 
 have : 6-1 9-3 11-1 
 hear : 5-1 
 herding : 3-1 
@@ -138,14 +138,14 @@ hunting : 3-1
 identifiable : 11-1 
 implies : 2-1 
 important : 9-1 
-in : 3-1 5-2 6-1 9-3 
+in : 3-1 5-2 6-1 3-3 
 inadequate : 3-1 
 includes : 5-1 
 indigenous : 11-1 
 influence : 3-1 
 instead : 9-1 
 into : 9-1 
-is : 2-4 5-3 9-2 11-4 
+is : 2-4 5-3 9-2 2-4 
 issues. : 9-1 
 it : 5-1 
 its : 11-1 
@@ -186,13 +186,13 @@ neutering : 6-1
 night : 5-1 
 not : 2-1 9-1 
 numbers : 6-1 
-of : 2-3 3-1 5-1 6-4 9-4 11-8 
+of : 2-3 3-1 5-1 6-4 9-4 2-8 
 officials : 9-1 
 often : 6-1 11-1 
 on : 3-2 9-1 
 one : 9-1 11-1 
 or : 5-1 9-1 
-other : 3-1 5-2 
+other : 3-1 3-2 
 over : 2-1 
 part : 2-1 
 pedigreed : 6-1 
@@ -206,7 +206,7 @@ pheromones : 5-1
 physical : 2-1 
 place : 9-1 
 police : 3-1 
-population : 6-1 11-2 
+population : 6-1 6-2 
 power : 9-1 
 powers : 9-1 
 predator : 5-1 
@@ -270,7 +270,7 @@ teeth : 5-1
 terms : 9-1 
 terrestrial : 2-1 
 that : 2-2 3-1 5-1 
-the : 2-8 3-1 5-2 6-1 9-10 11-6 
+the : 2-8 3-1 5-2 6-1 9-10 2-6 
 them : 3-1 
 therapeutic : 3-1 
 they : 3-1 
