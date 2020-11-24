@@ -2,68 +2,68 @@ A : 5-1
 Ankara : 9-1 
 Canidae : 2-1 
 Cat : 5-1 
-China : 11-1 
-Chinese : 11-1 
+China : 11-3 
+Chinese : 11-2 
 Dogs : 3-1 
 Domestic : 6-1 
 Failure : 6-1 
 Female : 6-1 
-It : 5-1 2-1 
+It : 2-1 5-2 
 Its : 5-1 
 Local : 9-1 
 Other : 9-1 
 Probably : 11-1 
 Some : 11-1 
-The : 11-1 5-1 2-1 
+The : 2-3 5-1 11-1 
 Their : 3-1 
 They : 3-1 
 This : 3-1 
-Turkey : 9-1 
-Turkish : 9-1 
+Turkey : 9-2 
+Turkish : 9-2 
 When : 9-1 
-a : 11-1 9-1 6-1 5-1 3-1 2-1 
+a : 2-1 3-1 5-3 6-1 9-2 11-1 
 abandonment : 6-1 
 abundant : 2-1 
 account : 9-1 
 active : 5-1 
 adapted : 5-1 
-administration : 9-1 
-administrations : 9-1 
+administration : 9-2 
+administrations : 9-2 
 aiding : 3-1 
 also : 9-1 
 an : 11-1 
 anatomy : 5-1 
 ancestor : 2-1 
-and : 11-1 9-1 6-1 5-1 3-1 2-1 
+and : 2-4 3-5 5-6 6-4 9-4 11-1 
 appointed : 9-1 
-are : 9-1 6-1 5-1 2-1 
-as : 11-1 9-1 6-1 5-1 3-1 2-1 
+are : 2-2 5-1 6-1 9-3 
+as : 2-1 3-1 5-3 6-4 9-1 11-3 
 aspect : 9-1 
 assisting : 3-1 
 association : 3-1 
-at : 6-1 5-1 
+at : 5-1 6-1 
 attributes : 2-1 
 attuned : 3-1 
 autumn : 6-1 
-be : 3-1 2-1 
+be : 2-1 3-2 
 been : 2-1 
 behavior : 3-1 
 behaviors : 2-1 
 best : 3-1 
 bird : 6-1 
 bodies : 9-1 
-body : 5-1 
-bred : 6-1 2-1 
+body : 5-2 
+bred : 2-1 6-1 
 breeding : 6-1 
-but : 11-1 5-1 
-by : 9-1 6-1 5-1 
-can : 6-1 5-1 3-1 
-canids : 3-1 2-1 
+but : 5-1 11-1 
+by : 5-1 6-1 9-3 
+can : 3-1 5-1 6-1 
+canids : 2-1 3-1 
 capabilities : 2-1 
-carnivore : 2-1 
-cat : 6-1 5-1 
-cats : 6-1 
-central : 9-1 
+carnivore : 2-2 
+cat : 5-3 6-1 
+cats : 6-5 
+central : 9-2 
 characteristic : 11-1 
 characterized : 11-1 
 claws : 5-1 
@@ -73,7 +73,7 @@ communication : 5-1
 companionship : 3-1 
 constituents : 9-1 
 contributing : 6-1 
-control : 6-1 
+control : 6-2 
 countries : 11-1 
 country : 11-1 
 dawn : 5-1 
@@ -82,11 +82,11 @@ developed : 5-1
 diet : 3-1 
 direct : 2-1 
 disabled : 3-1 
-does : 11-1 9-1 
-dog : 2-1 
+does : 9-1 11-1 
+dog : 2-4 
 dogs : 3-1 
 domestic : 6-1 
-domesticated : 2-1 
+domesticated : 2-3 
 dusk : 5-1 
 ears : 5-1 
 elected : 9-1 
@@ -107,61 +107,61 @@ felid : 5-1
 feral : 6-1 
 few : 11-1 
 fifth : 11-1 
-first : 2-1 
+first : 2-2 
 five : 6-1 
 flexible : 5-1 
-for : 5-1 3-1 9-1 2-1 
+for : 2-1 9-2 3-1 5-1 
 frequency : 5-1 
 friend : 3-1 
-from : 6-1 
+from : 6-2 
 functions : 9-1 
 given : 3-1 
-government : 9-1 
-governors : 9-1 
+government : 9-3 
+governors : 9-2 
 gray : 2-1 
 great : 11-1 
 growling : 5-1 
 grunting : 5-1 
-has : 5-1 3-1 9-1 2-1 
-have : 11-1 9-1 6-1 
+has : 2-1 9-2 3-1 5-1 
+have : 6-1 9-3 11-1 
 hear : 5-1 
 herding : 3-1 
 high : 5-1 
 hissing : 5-1 
 hobby : 6-1 
 homogeneous : 11-1 
-human : 5-1 3-1 
+human : 3-2 5-1 
 humanity : 11-1 
-humans : 3-1 
+humans : 3-2 
 hunter : 5-1 
 hunting : 3-1 
 identifiable : 11-1 
 implies : 2-1 
 important : 9-1 
-in : 9-1 6-1 5-1 3-1 
+in : 3-1 5-2 6-1 9-3 
 inadequate : 3-1 
 includes : 5-1 
 indigenous : 11-1 
 influence : 3-1 
 instead : 9-1 
 into : 9-1 
-is : 11-1 9-1 5-1 2-1 
+is : 2-4 5-3 9-2 11-4 
 issues. : 9-1 
 it : 5-1 
 its : 11-1 
 killing : 5-1 
-kittens : 6-1 
+kittens : 6-2 
 known : 6-1 
 language : 5-1 
 large : 6-1 
 late : 6-1 
 led : 3-1 
 legislative : 9-1 
-like : 5-1 2-1 
+like : 2-1 5-1 
 litter : 6-1 
 little : 9-1 
 loads : 3-1 
-local : 9-1 
+local : 9-2 
 long : 3-1 
 made : 5-1 
 main : 9-1 
@@ -178,25 +178,25 @@ military : 3-1
 millennia : 2-1 
 modern : 2-1 
 more : 3-1 
-most : 11-1 9-1 5-1 2-1 
+most : 2-1 5-1 9-1 11-1 
 municipal : 9-1 
 municipalities : 9-1 
 nationality : 11-1 
 neutering : 6-1 
 night : 5-1 
-not : 9-1 2-1 
+not : 2-1 9-1 
 numbers : 6-1 
-of : 11-1 9-1 6-1 5-1 3-1 2-1 
+of : 2-3 3-1 5-1 6-4 9-4 11-8 
 officials : 9-1 
-often : 11-1 6-1 
-on : 9-1 3-1 
-one : 11-1 9-1 
-or : 9-1 5-1 
-other : 5-1 3-1 
+often : 6-1 11-1 
+on : 3-2 9-1 
+one : 9-1 11-1 
+or : 5-1 9-1 
+other : 3-1 5-2 
 over : 2-1 
 part : 2-1 
 pedigreed : 6-1 
-people : 11-1 3-1 
+people : 3-1 11-1 
 peoples : 11-1 
 perceives : 5-1 
 perform : 3-1 
@@ -206,7 +206,7 @@ pheromones : 5-1
 physical : 2-1 
 place : 9-1 
 police : 3-1 
-population : 11-1 6-1 
+population : 6-1 11-2 
 power : 9-1 
 powers : 9-1 
 predator : 5-1 
@@ -215,7 +215,7 @@ protection : 3-1
 provide : 9-1 
 province : 9-1 
 provinces : 9-1 
-public : 9-1 
+public : 9-2 
 pulling : 3-1 
 purring : 5-1 
 quick : 5-1 
@@ -230,7 +230,7 @@ rest : 11-1
 resulted : 6-1 
 retractable : 5-1 
 rich : 3-1 
-roles : 3-1 
+roles : 3-2 
 secretes : 5-1 
 selectively : 2-1 
 senior : 9-1 
@@ -244,9 +244,9 @@ shown : 6-1
 similar : 5-1 
 single : 11-1 
 sister : 2-1 
-size : 11-1 3-1 
+size : 3-1 11-1 
 sizes : 6-1 
-small : 5-1 
+small : 5-2 
 smell : 5-1 
 sobriquet : 3-1 
 social : 5-1 
@@ -254,7 +254,7 @@ society : 3-1
 solitary : 5-1 
 sounds : 5-1 
 spaying : 6-1 
-species : 6-1 5-1 2-1 
+species : 2-1 5-2 6-1 
 specific : 5-1 
 spring : 6-1 
 starch : 3-1 
@@ -262,15 +262,15 @@ state : 9-1
 strong : 5-1 
 structure : 9-1 
 subordinate : 9-1 
-such : 5-1 3-1 
+such : 3-1 5-1 
 system : 9-1 
 taken : 9-1 
 taxa : 2-1 
 teeth : 5-1 
 terms : 9-1 
 terrestrial : 2-1 
-that : 5-1 3-1 2-1 
-the : 11-1 9-1 6-1 5-1 3-1 2-1 
+that : 2-2 3-1 5-1 
+the : 2-8 3-1 5-2 6-1 9-10 11-6 
 them : 3-1 
 therapeutic : 3-1 
 they : 3-1 
@@ -279,8 +279,8 @@ those : 5-1
 three : 9-1 
 thrive : 3-1 
 thus : 11-1 
-to : 11-1 9-1 6-1 5-1 3-1 2-1 
-too : 5-1 
+to : 2-2 3-2 5-2 6-4 9-2 11-1 
+too : 5-2 
 town : 9-1 
 trilling : 5-1 
 two : 6-1 
@@ -292,14 +292,14 @@ vary : 3-1
 vision : 5-1 
 vocalizations : 5-1 
 was : 2-1 
-well : 6-1 5-1 
-were : 9-1 2-1 
+well : 5-2 6-1 
+were : 2-1 9-1 
 which : 2-1 
 wide : 11-1 
-widely : 3-1 2-1 
-with : 6-1 3-1 
-wolf : 2-1 
-wolves : 2-1 
+widely : 2-1 3-1 
+with : 3-1 6-1 
+wolf : 2-2 
+wolves : 2-2 
 world : 11-1 
 worldwide : 6-1 
 would : 3-1 
