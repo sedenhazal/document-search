@@ -11,6 +11,12 @@
 #include <map>
 #include <bits/stdc++.h>
 #include <experimental/filesystem>
+#include <boost/serialization/access.hpp>
+#include <boost/serialization/string.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/map.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
@@ -19,20 +25,38 @@ struct file
 {
 	string FileName;
 	int frequency;
+
+	private:
+		friend class boost::serialization::access;
+		template<class Archive>
+		void serialize(Archive &ar, const unsigned int version)
+		{
+		   ar & FileName;
+		   ar & frequency;
+		}
 };
 
 class DocumentSearch
 {
+
   map<string,vector<int> > InvertedIndexTemp; // map <word,fileID>
   map<string,vector<file> > InvertedIndex; // map <word,file>
   vector<string> filelist;
 
+  friend class boost::serialization::access;
+  template<class Archive>
+  void serialize(Archive& ar, const unsigned version)
+  {
+  	  ar & InvertedIndex;
+  }
+
   public:
     void analyzer(string directory);
-    void merge();
     void index();
     void search(string word);
+
 };
+
 
 void DocumentSearch::analyzer(string directory)
 {
@@ -130,7 +154,7 @@ void DocumentSearch::index()
 			InvertedIndex[word].push_back(obj);
 		}
 
-		// 3. Serialize Inverted Index
+		// 3. Print Inverted Index
 		outfile <<  word << ":";
 		cout << word << ":";
 
@@ -144,75 +168,73 @@ void DocumentSearch::index()
 		outfile << endl;
 		cout << endl;
 		ind++;
+
 	}
 
 	outfile.close();
 }
 
-void DocumentSearch::merge()
-{
-
-}
-
 void DocumentSearch::search(string word)
 {
+	map<string,vector<file> > RestoredInvertedIndex; // map <word,file>
 
+	// Read Inverted Index
 	// Read from file.
-	ifstream f;
-	f.open("outfile.txt",ios::in);
+		ifstream f;
+		f.open("outfile.txt",ios::in);
 
-	if(!f)
-	{
-		cout<<"File Not Found\n";
-		return ;
-	}
-
-	string line;
-	vector <string> tokens;
-	while(getline(f,line))
-	{
-		stringstream check1(line);
-		string intermediate;
-
-		while(getline(check1, intermediate, ':'))
+		if(!f)
 		{
-			tokens.push_back(intermediate);
+			cout<<"File Not Found\n";
+			return ;
 		}
 
-	}
-	f.close();
-
-	  if(find(tokens.begin(), tokens.end(), word) == tokens.end())
-	  {
-	    cout<<"No instance exist\n";
-	    return ;
-	  }
-
-
-	// Search for a given word.
-	int position =  find(tokens.begin(), tokens.end(), word) - tokens.begin();
-	stringstream check2(tokens[position + 1]);
-	string intermediate2;
-	vector <string> tokens2;
-	while(getline(check2, intermediate2, ' '))
-	{
-		tokens2.push_back(intermediate2);
-	}
-
-
-	cout << (int)tokens2.size() << endl;
-	for(int i = 0; i < (int)tokens2.size(); i++)
-	{
-		stringstream check3(tokens2[i]);
-		string intermediate3;
-		vector <string> tokens3;
-		while(getline(check3, intermediate3, '-'))
+		string line;
+		vector <string> tokens;
+		while(getline(f,line))
 		{
-			tokens3.push_back(intermediate3);
+			stringstream check1(line);
+			string intermediate;
+
+			while(getline(check1, intermediate, ':'))
+			{
+				tokens.push_back(intermediate);
+			}
 
 		}
-		cout << tokens3[0] << " " << tokens3[1] << endl;
-	}
+		f.close();
+
+		  if(find(tokens.begin(), tokens.end(), word) == tokens.end())
+		  {
+		    cout<<"No instance exist\n";
+		    return ;
+		  }
+
+
+		// Search for a given word.
+		int position =  find(tokens.begin(), tokens.end(), word) - tokens.begin();
+		stringstream check2(tokens[position + 1]);
+		string intermediate2;
+		vector <string> tokens2;
+		while(getline(check2, intermediate2, ' '))
+		{
+			tokens2.push_back(intermediate2);
+		}
+
+
+		for(int i = 0; i < (int)tokens2.size(); i++)
+		{
+			stringstream check3(tokens2[i]);
+			string intermediate3;
+			vector <string> tokens3;
+			while(getline(check3, intermediate3, '-'))
+			{
+				tokens3.push_back(intermediate3);
+
+			}
+			cout << tokens3[0] << " " << tokens3[1] << endl;
+		}
+
 
 }
 
@@ -230,6 +252,7 @@ int main(int argc, char*argv[])
 	}
 	else if (command == "-search")
 	{
+		cout << "Searching for '" << argv[2] << "' : " << endl;
 		Data.search(argv[2]);
 	}
 	else
