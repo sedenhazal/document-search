@@ -17,7 +17,7 @@ namespace fs = std::experimental::filesystem;
 
 struct file
 {
-	int fileId;
+	string FileName;
 	int frequency;
 };
 
@@ -69,10 +69,7 @@ void DocumentSearch::index()
 		}
 		f.close();
 	}
-}
 
-void DocumentSearch::merge()
-{
 	int freq = 1;
 	int ind = 0;
 
@@ -80,14 +77,13 @@ void DocumentSearch::merge()
 	ofstream outfile;
 	outfile.open(filename,ios::out);
 
-	// 2. Merge Inverted Index
+	// 2. Create Inverted Index.
 	for(auto it = InvertedIndexTemp.begin(); it != InvertedIndexTemp.end(); ++it)
 	{
 		string word = it->first;
 		vector<int>& v = it->second;
 		file obj;
 
-		// Calculate number of occurrences.
 		if ((int)v.size() > 1)
 		{
 			for (int j = 1; j < (int)v.size(); j++)
@@ -99,7 +95,8 @@ void DocumentSearch::merge()
 				}
 				else
 				{
-					obj.fileId = v[j - 1];
+					//obj.fileId = v[j - 1];
+					obj.FileName = filelist[v[j - 1]];
 					obj.frequency = freq;
 					InvertedIndex[word].push_back(obj);
 					freq = 1; // reset frequency
@@ -107,7 +104,8 @@ void DocumentSearch::merge()
 					// For the last vector element which is different from previous one.
 					if(j == (int)v.size() - 1)
 					{
-						obj.fileId = v[j];
+						//obj.fileId = v[j];
+						obj.FileName = filelist[v[j]];
 						obj.frequency = freq;
 						InvertedIndex[word].push_back(obj);
 					}
@@ -117,7 +115,8 @@ void DocumentSearch::merge()
 			// For cases like: {1,1,1} or {1,1,1,2,2,2} etc.
 			if (freq > 1)
 			{
-				obj.fileId = v.front();
+				//obj.fileId = v.front();
+				obj.FileName = filelist[v.front()];
 				obj.frequency = freq;
 				InvertedIndex[word].push_back(obj);
 				freq = 1; // reset frequency
@@ -125,20 +124,21 @@ void DocumentSearch::merge()
 		}
 		else
 		{
-			obj.fileId = v.back();
+			//obj.fileId = v.back();
+			obj.FileName = filelist[v.back()];
 			obj.frequency = freq;
 			InvertedIndex[word].push_back(obj);
 		}
 
 		// 3. Serialize Inverted Index
-		outfile <<  word << " : ";
-		cout << ind + 1 << word << " : ";
+		outfile <<  word << ":";
+		cout << word << ":";
 
 		int size = (int)InvertedIndex[word].size();
 		for (int it2 = 0; it2 < size; it2++)
 		{
-			outfile << InvertedIndex[word][it2].fileId << "-" << InvertedIndex[word][it2].frequency << " ";
-			cout << InvertedIndex[word][it2].fileId << "-" << InvertedIndex[word][it2].frequency << " ";
+			outfile << InvertedIndex[word][it2].FileName << "-" << InvertedIndex[word][it2].frequency << " ";
+			cout << InvertedIndex[word][it2].FileName << "-" << InvertedIndex[word][it2].frequency << " ";
 		}
 
 		outfile << endl;
@@ -149,19 +149,71 @@ void DocumentSearch::merge()
 	outfile.close();
 }
 
+void DocumentSearch::merge()
+{
+
+}
+
 void DocumentSearch::search(string word)
 {
-	if(InvertedIndex.find(word)== InvertedIndex.end())
+
+	// Read from file.
+	ifstream f;
+	f.open("outfile.txt",ios::in);
+
+	if(!f)
 	{
-	cout<<"No instance exist\n";
-	return ;
+		cout<<"File Not Found\n";
+		return ;
 	}
 
-	int size = (int)InvertedIndex.size();
-	for(int counter = 0;counter < size ;counter++)
+	string line;
+	vector <string> tokens;
+	while(getline(f,line))
 	{
-	cout<<counter+1<<":\n";
+		stringstream check1(line);
+		string intermediate;
+
+		while(getline(check1, intermediate, ':'))
+		{
+			tokens.push_back(intermediate);
+		}
+
 	}
+	f.close();
+
+	  if(find(tokens.begin(), tokens.end(), word) == tokens.end())
+	  {
+	    cout<<"No instance exist\n";
+	    return ;
+	  }
+
+
+	// Search for a given word.
+	int position =  find(tokens.begin(), tokens.end(), word) - tokens.begin();
+	stringstream check2(tokens[position + 1]);
+	string intermediate2;
+	vector <string> tokens2;
+	while(getline(check2, intermediate2, ' '))
+	{
+		tokens2.push_back(intermediate2);
+	}
+
+
+	cout << (int)tokens2.size() << endl;
+	for(int i = 0; i < (int)tokens2.size(); i++)
+	{
+		stringstream check3(tokens2[i]);
+		string intermediate3;
+		vector <string> tokens3;
+		while(getline(check3, intermediate3, '-'))
+		{
+			tokens3.push_back(intermediate3);
+
+		}
+		cout << tokens3[0] << " " << tokens3[1] << endl;
+	}
+
 }
 
 int main(int argc, char*argv[])
@@ -174,7 +226,7 @@ int main(int argc, char*argv[])
 	{
 		Data.analyzer(argv[2]);
 		Data.index();
-		Data.merge();
+		//Data.merge();
 	}
 	else if (command == "-search")
 	{
