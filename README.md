@@ -8,7 +8,7 @@
 	./DocSearchCpp -index <path_to_library>
 
 3. Linux terminal command to search for a word	
-	./DocSearchCpp -search <word>
+	./DocSearchCpp -search <some_word>
 
 ### Unit Test:
 1. Directory of the unit test for index method: "document-search/googletests/executeIndexTest"
