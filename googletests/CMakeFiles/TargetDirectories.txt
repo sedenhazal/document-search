@@ -1,0 +1,4 @@
+/home/hazalg/Documents/document-search/googletests/CMakeFiles/edit_cache.dir
+/home/hazalg/Documents/document-search/googletests/CMakeFiles/executeIndexTest.dir
+/home/hazalg/Documents/document-search/googletests/CMakeFiles/rebuild_cache.dir
+/home/hazalg/Documents/document-search/googletests/CMakeFiles/executeSearchTest.dir

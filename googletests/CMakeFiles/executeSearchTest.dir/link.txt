@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/executeSearchTest.dir/search_test.cpp.o -o executeSearchTest  -Wl,-Bstatic -lgtest -Wl,-Bdynamic -lpthread 

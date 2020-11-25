@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hazalg/Documents/document-search/googletests/search.cpp
+iostream
+-
+fstream
+-
+sstream
+-
+vector
+-
+map
+-
+bits/stdc++.h
+-
+experimental/filesystem
+-
+
+/home/hazalg/Documents/document-search/googletests/search_test.cpp
+search.cpp
+/home/hazalg/Documents/document-search/googletests/search.cpp
+gtest/gtest.h
+-
+
