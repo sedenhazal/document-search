@@ -12,14 +12,14 @@
 
 ### Unit Test:
 1. Directory of the unit test for index method: "document-search/googletests/executeIndexTest"
-2. Directory of the unit test for index method: "document-search/googletests/executeSearchTest"
+2. Directory of the unit test for search method: "document-search/googletests/executeSearchTest"
 
 ### Notes:
 
 1. The program is written following object oriented programming structure. The program can be found under "document-search/main.cpp" directory.
-2. There are 3 methods related to data object: analizer, index and search methods.
+2. There are 3 methods related to DocumentSearch class: analizer, index and search.
 3. Unit tests are written for index and search methods. 
-4. The InvertedIndex is defined using map data structure. Serialization/Deserialization for map cannot be done. So, read/write functions are used instead. Because of that the search method is independent of InvertedIndex map data structure. It just reads data from txt file. 
+4. The InvertedIndex is defined using map data structure. Serialization/Deserialization for map couldn't be implemented. So, read/write functions are used instead. Because of that the search method is independent of InvertedIndex map data structure (it just reads data from txt file). 
 
 ### References:
 1. https://www.youtube.com/watch?v=bnP6TsqyF30
